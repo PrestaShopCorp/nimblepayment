@@ -1,0 +1,3 @@
+[submodule "library/sdk"]
+	path = library/sdk
+	url = https://github.com/nimblepayments/nimble-dev-sdk-php
