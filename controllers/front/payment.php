@@ -109,9 +109,12 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 
 	public function sendPayment($total, $paramurl)
 	{
+		$cart = $this->context->cart;
+
 		$payment = array(
 			'amount' => (int)$total,
 			'currency' => 'EUR',
+			'customerData' => $cart->id,
 			'paymentSuccessUrl' => $this->nimblepayment_url_ok.'?paymentcode='.$paramurl,
 			'paymentErrorUrl' => $this->nimblepayment_url_ko.'?paymentcode='.$paramurl
 		);
