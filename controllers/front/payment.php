@@ -121,7 +121,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 
 		try
 		{
-			$response = Nimble\Api\Payment::SendPaymentClient($this->nimbleapi, $payment);
+			$response = Nimble\Api\Payments::SendPaymentClient($this->nimbleapi, $payment);
 		}
 		catch (Exception $e)
 		{
@@ -129,10 +129,12 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
+
 		if (!isset($response['error']))
 		{
 			if ($response['result']['code'] == 200)
-				Tools::redirect($response['data'][0]['paymentUrl']);
+				//Tools::redirect($response['data'][0]['paymentUrl']); //old version
+				Tools::redirect($response['data']['paymentUrl']);
 			else
 			{
 				$this->setTemplate('payment_failed.tpl');
