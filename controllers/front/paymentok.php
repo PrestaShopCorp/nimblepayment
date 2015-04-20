@@ -40,13 +40,13 @@ class NimblePaymentPaymentOkModuleFrontController extends ModuleFrontController
 	{
 		parent::initContent();
 		$code = Tools::getValue('paymentcode');
-		$cart = (int)Tools::substr($code, 0, 8); /** devuelve "d" */
+		$cart = (int)Tools::substr($code, 0, 8);
 
 		$this->nimblepayment_client_secret = Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET', Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET'));
 		$cart = new Cart($cart);
-		$numpedido = Tools::substr($code, 0, 8);
+		$order_num = Tools::substr($code, 0, 8);
 		$total_url = str_replace('.', '', $cart->getOrderTotal(true, Cart::BOTH));
-		$paramurl = $numpedido.md5($numpedido.$this->nimblepayment_client_secret.$total_url);
+		$paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total_url);
 
 		if ($paramurl == $code)
 		{

@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 * 2007-2014 PrestaShop
 *
 * NOTICE OF LICENSE
@@ -18,11 +18,12 @@
 * versions in the future. If you wish to customize PrestaShop for your
 * needs please refer to http://www.prestashop.com for more information.
 *
-*  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2014 PrestaShop SA
-*  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*  @author PrestaShop SA <contact@prestashop.com>
+*  @copyright  2007-2014 PrestaShop SA
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
+
 
 if (! defined('_CAN_LOAD_FILES_'))
 	exit();
@@ -37,13 +38,6 @@ class NimblePayment extends PaymentModule
 		$this->tab = 'payments_gateways';
 		$this->version = '1.0.0';
 		$this->author = 'BBVA';
-		/** $config = Configuration::getMultiple(
-		array('NIMBLEPAYMENT_CLIENT_ID','NIMBLEPAYMENT_CLIENT_SECRET','NIMBLEPAYMENT_URLTPV', 'NIMBLEPAYMENT_KEY', 
-		'NIMBLEPAYMENT_NAME','NIMBLEPAYMENT_DESCRIPTION', 'NIMBLEPAYMENT_CODE', 'NIMBLEPAYMENT_URL_OK', 'NIMBLEPAYMENT_URL_KO'));*/
-
-		/** $config = Configuration::getMultiple(
-		array('NIMBLEPAYMENT_CLIENT_ID','NIMBLEPAYMENT_CLIENT_SECRET','NIMBLEPAYMENT_URLTPV', 'NIMBLEPAYMENT_KEY', 
-		'NIMBLEPAYMENT_NAME','NIMBLEPAYMENT_DESCRIPTION', 'NIMBLEPAYMENT_URL_OK', 'NIMBLEPAYMENT_URL_KO'));**/
 
 		$this->bootstrap = true;
 		parent::__construct();
@@ -56,9 +50,9 @@ class NimblePayment extends PaymentModule
 	public function install()
 	{
 		if (! parent::install()
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_OK', 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentok')
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_KO', 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentko')
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URLTPV', 'http://devel.tempos21.es/nimble-mock/rest/')
+				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_OK', Context::getContext()->shop->getBaseUrl() .'module/nimblepayment/paymentok')
+				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_KO', Context::getContext()->shop->getBaseUrl() .'module/nimblepayment/paymentko')
+				|| ! Configuration::updateValue('NIMBLEPAYMENT_URLTPV', 'https://dev.nimblepayments.com/api/')
 				|| ! $this->registerHook('payment')
 				|| ! $this->registerHook('paymentReturn'))
 			return false;

@@ -36,7 +36,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 	public $nimblepayment_url_ok = '';
 	public $nimblepayment_url_ko = '';
 	public $nimblepayment_urltpv = '';
-	public $type_error = 0; /** Ninguno */
+	public $type_error = 0;
 	public $nimbleapi;
 	/**
 	* @see FrontController::initContent()
@@ -50,8 +50,8 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		if ($this->validatePaymentData() == true)
 		{
 			$total = str_replace('.', '', $cart->getOrderTotal(true, Cart::BOTH));
-			$numpedido = str_pad($cart->id, 8, '0', STR_PAD_LEFT);
-			$paramurl = $numpedido.md5($numpedido.$this->nimblepayment_client_secret.$total);
+			$order_num = str_pad($cart->id, 8, '0', STR_PAD_LEFT);
+			$paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total);
 			if ($this->authentified() == true)
 			$this->sendPayment($total, $paramurl);
 		}
@@ -100,7 +100,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		}
 		catch (Exception $e)
 		{
-			$this->type_error = $e->getMessage(); /** Autentificación */
+			$this->type_error = $e->getMessage();
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
@@ -125,7 +125,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		}
 		catch (Exception $e)
 		{
-			$this->type_error = 3; /** Problema en el envío del pago. */
+			$this->type_error = 3; // problem to send payment
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
@@ -138,12 +138,12 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			else
 			{
 				$this->setTemplate('payment_failed.tpl');
-				$this->type_error = 3; /** Fallo en el envio a la pasarela */
+				$this->type_error = 3; // problem to send payment
 			}
 		}
 		else
 		{
-			$this->type_error = 4; /**Se detecto una anomalia en los datos enviados. */
+			$this->type_error = 4; // an anomaly was detected in the data sent.
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
