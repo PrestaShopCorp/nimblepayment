@@ -49,7 +49,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			Tools::redirect('index.php?controller=order');
 		if ($this->validatePaymentData() == true)
 		{
-			$total = str_replace('.', '', $cart->getOrderTotal(true, Cart::BOTH));
+			$total = $cart->getOrderTotal(true, Cart::BOTH) * 100;
 			$order_num = str_pad($cart->id, 8, '0', STR_PAD_LEFT);
 			$paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total);
 			if ($this->authentified() == true)
