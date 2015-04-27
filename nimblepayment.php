@@ -107,7 +107,7 @@ class NimblePayment extends PaymentModule
 			/** Configuration::updateValue('NIMBLEPAYMENT_CODE', Tools::getValue('NIMBLEPAYMENT_CODE'));*/
 
 		}
-		$this->_html .= $this->displayConfirmation($this->l('Settings updated'));
+		return $this->displayConfirmation($this->l('Settings updated'));
 	}
 
 	private function displaynimblepayment()
@@ -117,21 +117,21 @@ class NimblePayment extends PaymentModule
 
 	public function getContent()
 	{
+		$output = null;
+
 		if (Tools::isSubmit('btnSubmit'))
 		{
 			$this->postValidation();
 			if (!count($this->post_errors))
-				$this->postProcess();
+				$output .= $this->postProcess();
 			else
 				foreach ($this->post_errors as $err)
-					$this->_html .= $this->displayError($err);
+					$output .= $this->displayError($err);
 		}
-		else
-			$this->_html .= '<br />';
 
-		$this->_html .= $this->displaynimblepayment();
-		$this->_html .= $this->renderForm();
-		return $this->_html;
+		$output .= $this->displaynimblepayment();
+		$output .= $this->renderForm();
+		return $output;
 	}
 
 	public function hookPayment($params)
