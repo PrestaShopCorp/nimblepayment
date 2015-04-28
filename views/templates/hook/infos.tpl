@@ -23,8 +23,10 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div class="alert alert-info">
-<img src="/modules/nimblepayment/views/img/nimble.png" style="float:left; margin-right:15px;margin-top: -5px;">
-<p><strong>{l s="This module allows you to accept payments by nimble sdk." mod='nimblepayment'}</strong></p>
-<p>{l s="If the customers chooses this method of payment, they may pay automatically." mod='nimblepayment'}</p>
+<link href="{$module_dir|escape}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
+
+<div class="info-module-nimble">
+	<img id="img-module-nimble" src="/modules/nimblepayment/views/img/nimble.png" >
+	<p><strong>{l s='This module allows you to accept payments by nimble sdk.' mod='nimblepayment'}</strong></p>
+	<p>{l s='If the customers chooses this method of payment, they may pay automatically.' mod='nimblepayment'}</p>
 </div>
