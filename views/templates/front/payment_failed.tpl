@@ -26,4 +26,11 @@
 <link href="{$this_path|escape}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
 {capture name=path}{l s='Nimble Payment' mod='nimblepayment'}{/capture}
 
-{l s='An error has occurred:' mod='nimblepayment'} {$error|escape}
+<p><strong>{l s='The payment could not be completed, an error has occurred:' mod='nimblepayment'}</strong> {$error|escape}</p>
+
+<p>
+	<a href="javascript:history.back()" title="{l s='Volver' mod='nimblepayment'}" class="button-exclusive btn btn-default">
+		<i class="icon-chevron-left"></i>
+		{l s='Volver' mod='nimblepayment'}
+	</a>
+</p>

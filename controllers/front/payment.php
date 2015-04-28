@@ -72,9 +72,11 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			
 			//type error = 1
 			//show error to the user
-			$this->type_error = $this->l('Is not possible to contact with Nimble Payments. Sorry for the inconvenience.');
+			$this->type_error = $this->module->l('Is not possible to contact with Nimble Payments. Sorry for the inconvenience.');
 
-			//TO DO: and alert to the merchant. sending email maybe? // Tools::getValue('PS_SHOP_EMAIL', Configuration::get('PS_SHOP_EMAIL'))
+			//write in log
+			Logger::addLog('NIMBLE_PAYMENTS. Client ID and/or Client secret is empty', 4);
+
 			return false;
 		}
 		return true;
@@ -94,8 +96,10 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		}
 		catch (Exception $e)
 		{
+			//type error = 2
 			//$this->type_error = $e->getMessage(); //don´t show that to final user
-			$this->type_error = $this->l('Is not possible to contact with Nimble Payments. There are authentication problems. Sorry for the inconvenience.');
+			$this->type_error = $this->module->l('Is not possible to contact with Nimble Payments. There are authentication problems. Sorry for the inconvenience.');
+			Logger::addLog('NIMBLE_PAYMENTS. Authentication problems (oAuth)', 4);
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
@@ -120,27 +124,39 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		}
 		catch (Exception $e)
 		{
-			$this->type_error = 3; // problem to send payment
+			//type error = 3 // problem to send payment
+			$this->type_error =  $this->module->l('Is not possible send the payment to Nimble Payments. Sorry for the inconvenience.');
+			Logger::addLog('NIMBLE_PAYMENTS. Is not possible send the payment.', 4);
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
 
-		if (!isset($response['error']))
+		if(empty($response))
+		{
+			//type error = 6
+			$this->type_error = $this->module->l('Unknown error or timeout. Sorry for the inconvenience.');
+			Logger::addLog('NIMBLE_PAYMENTS. Unknown error or timeout.', 4);
+			$this->setTemplate('payment_failed.tpl');
+		}
+		elseif (!isset($response['error']))
 		{
 			if ($response['result']['code'] == 200)
 				//Tools::redirect($response['data'][0]['paymentUrl']); //old version
 				Tools::redirect($response['data']['paymentUrl']);
 			else
 			{
+				//type error = 4 // problem to send payment 2
 				$this->setTemplate('payment_failed.tpl');
-				$this->type_error = 3; // problem to send payment
+				$this->type_error =  $this->module->l('Is not possible send the payment to Nimble Payments (Code Error: "%s). Sorry for the inconvenience.', $response['result']['code']);
+				Logger::addLog('NIMBLE_PAYMENTS. Is not possible send the payment to Nimble Payments (Code Error: '.$response['result']['code'].')', 4);
 			}
 		}
 		else
 		{
-			$this->type_error = 4; // an anomaly was detected in the data sent.
+			//type error = 5 // problem to send payment 3
+			$this->type_error = $this->module->l('We have recieved an error from Nimble Payments (Error: %s). Sorry for the inconvenience.', $response['error']);
 			$this->setTemplate('payment_failed.tpl');
-			return false;
+			Logger::addLog('NIMBLE_PAYMENTS. We have recieved an error from Nimble Payments (Error: '.$response['error'].')', 4);
 		}
 	}
 }
