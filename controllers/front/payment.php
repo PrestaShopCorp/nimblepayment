@@ -33,11 +33,10 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 	public $display_column_left = false;
 	public $nimblepayment_client_secret = '';
 	public $nimblepayment_client_id = '';
-	public $nimblepayment_url_ok = '';
-	public $nimblepayment_url_ko = '';
 	public $nimblepayment_urltpv = '';
 	public $type_error = 0;
 	public $nimbleapi;
+
 	/**
 	* @see FrontController::initContent()
 	*/
@@ -66,21 +65,16 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		$this->nimblepayment_client_secret = Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET', Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET'));
 		$this->nimblepayment_client_id = Tools::getValue('NIMBLEPAYMENT_CLIENT_ID', Configuration::get('NIMBLEPAYMENT_CLIENT_ID'));
 		$this->nimblepayment_urltpv = Tools::getValue('NIMBLEPAYMENT_URLTPV', Configuration::get('NIMBLEPAYMENT_URLTPV'));
-		$this->nimblepayment_url_ok = Tools::getValue('NIMBLEPAYMENT_URL_OK', Configuration::get('NIMBLEPAYMENT_URL_OK'));
-		$this->nimblepayment_url_ko = Tools::getValue('NIMBLEPAYMENT_URL_KO', Configuration::get('NIMBLEPAYMENT_URL_KO'));
 
-		if ($this->nimblepayment_url_ok != 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentok'
-		|| $this->nimblepayment_url_ko != 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentko')
-		{
-			Configuration::updateValue('NIMBLEPAYMENT_URL_OK', 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentok');
-			Configuration::updateValue('NIMBLEPAYMENT_URL_KO', 'http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'module/nimblepayment/paymentko');
-			$this->nimblepayment_url_ok = Tools::getValue('NIMBLEPAYMENT_URL_OK', Configuration::get('NIMBLEPAYMENT_URL_OK'));
-			$this->nimblepayment_url_ko = Tools::getValue('NIMBLEPAYMENT_URL_KO', Configuration::get('NIMBLEPAYMENT_URL_KO'));
-		}
 		if ($this->nimblepayment_client_secret == '' || $this->nimblepayment_client_id == '')
 		{
 			$this->setTemplate('payment_failed.tpl');
-			$this->type_error = 1;
+			
+			//type error = 1
+			//show error to the user
+			$this->type_error = $this->l('Is not possible to contact with Nimble Payments. Sorry for the inconvenience.');
+
+			//TO DO: and alert to the merchant. sending email maybe? // Tools::getValue('PS_SHOP_EMAIL', Configuration::get('PS_SHOP_EMAIL'))
 			return false;
 		}
 		return true;
@@ -100,7 +94,8 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		}
 		catch (Exception $e)
 		{
-			$this->type_error = $e->getMessage();
+			//$this->type_error = $e->getMessage(); //don´t show that to final user
+			$this->type_error = $this->l('Is not possible to contact with Nimble Payments. There are authentication problems. Sorry for the inconvenience.');
 			$this->setTemplate('payment_failed.tpl');
 			return false;
 		}
@@ -115,8 +110,8 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			'amount' => (int)$total,
 			'currency' => 'EUR',
 			'customerData' => $cart->id,
-			'paymentSuccessUrl' => $this->nimblepayment_url_ok.'?paymentcode='.$paramurl,
-			'paymentErrorUrl' => $this->nimblepayment_url_ko.'?paymentcode='.$paramurl
+			'paymentSuccessUrl' => $this->context->link->getModuleLink('nimblepayment', 'paymentok', array('paymentcode' => $paramurl)),
+			'paymentErrorUrl' => $this->context->link->getModuleLink('nimblepayment', 'paymentko', array('paymentcode' => $paramurl))
 		);
 
 		try

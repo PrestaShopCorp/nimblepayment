@@ -50,8 +50,6 @@ class NimblePayment extends PaymentModule
 	public function install()
 	{
 		if (! parent::install()
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_OK', Context::getContext()->shop->getBaseUrl() .'module/nimblepayment/paymentok')
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URL_KO', Context::getContext()->shop->getBaseUrl() .'module/nimblepayment/paymentko')
 				|| ! Configuration::updateValue('NIMBLEPAYMENT_URLTPV', 'https://dev.nimblepayments.com/api/')
 				|| ! $this->registerHook('payment')
 				|| ! $this->registerHook('paymentReturn'))
@@ -64,13 +62,8 @@ class NimblePayment extends PaymentModule
 	if (!Configuration::deleteByName('NIMBLEPAYMENT_CLIENT_ID')
 				|| !Configuration::deleteByName('NIMBLEPAYMENT_CLIENT_SECRET')
 				|| !Configuration::deleteByName('NIMBLEPAYMENT_URLTPV')
-				|| !Configuration::deleteByName('NIMBLEPAYMENT_KEY')
 				|| !Configuration::deleteByName('NIMBLEPAYMENT_NAME')
 				|| !Configuration::deleteByName('NIMBLEPAYMENT_DESCRIPTION')
-				/** || !Configuration::deleteByName('NIMBLEPAYMENT_CODE')*/
-
-				|| !Configuration::deleteByName('NIMBLEPAYMENT_URL_OK')
-				|| !Configuration::deleteByName('NIMBLEPAYMENT_URL_KO')
 				|| !parent::uninstall())
 			return false;
 		return true;
@@ -87,9 +80,6 @@ class NimblePayment extends PaymentModule
 			$this->post_errors[] = $this->l('Client secret is required.');
 			elseif (!Tools::getValue('NIMBLEPAYMENT_NAME'))
 			$this->post_errors[] = $this->l('Commerce name is required.');
-			/** elseif (!Tools::getValue('NIMBLEPAYMENT_CODE'))
-			$this->_postErrors[] = $this->l('Commerce code is required.');*/
-
 		}
 	}
 
@@ -102,10 +92,6 @@ class NimblePayment extends PaymentModule
 			Configuration::updateValue('NIMBLEPAYMENT_URLTPV', Tools::getValue('NIMBLEPAYMENT_URLTPV'));
 			Configuration::updateValue('NIMBLEPAYMENT_NAME', Tools::getValue('NIMBLEPAYMENT_NAME'));
 			Configuration::updateValue('NIMBLEPAYMENT_DESCRIPTION', Tools::getValue('NIMBLEPAYMENT_DESCRIPTION'));
-			Configuration::updateValue('NIMBLEPAYMENT_URL_OK', Tools::getValue('NIMBLEPAYMENT_URL_OK'));
-			Configuration::updateValue('NIMBLEPAYMENT_URL_KO', Tools::getValue('NIMBLEPAYMENT_URL_KO'));
-			/** Configuration::updateValue('NIMBLEPAYMENT_CODE', Tools::getValue('NIMBLEPAYMENT_CODE'));*/
-
 		}
 		return $this->displayConfirmation($this->l('Settings updated'));
 	}
@@ -206,11 +192,6 @@ class NimblePayment extends PaymentModule
 								'label' => $this->l('Commerce Description'),
 								'name' => 'NIMBLEPAYMENT_DESCRIPTION',
 						),
-						/** array(
-								'type' => 'text',
-								'label' => $this->l('Commerce Code'),
-								'name' => 'NIMBLEPAYMENT_CODE',
-						),*/
 
 						array(
 						'type' => 'select',
@@ -226,14 +207,15 @@ class NimblePayment extends PaymentModule
 								'type' => 'text',
 								'label' => $this->l('Commerce Url OK'),
 								'name' => 'NIMBLEPAYMENT_URL_OK',
-								/*'disabled' => TRUE,*/
-
+								'desc' => $this->l('Information only, not editable. This module automatically convert this URL in execution time , depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
+								'readonly' => TRUE,
 						),
 						array(
 								'type' => 'text',
 								'label' => $this->l('Commerce Url KO'),
 								'name' => 'NIMBLEPAYMENT_URL_KO',
-								/*'disabled' => TRUE,*/
+								'desc' => $this->l('Information only, not editable. This module automatically convert this URL in execution time , depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
+								'readonly' => TRUE,
 
 						)
 				),
@@ -248,7 +230,6 @@ class NimblePayment extends PaymentModule
 		$lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
 		$helper->default_form_language = $lang->id;
 		$helper->allow_employee_form_lang = Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') ? Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') : 0;
-		/** $this->fields_form = array(); */
 
 		$helper->id = (int)Tools::getValue('id_carrier');
 		$helper->identifier = $this->identifier;
@@ -283,13 +264,10 @@ class NimblePayment extends PaymentModule
 				'NIMBLEPAYMENT_CLIENT_ID' => Tools::getValue('NIMBLEPAYMENT_CLIENT_ID', Configuration::get('NIMBLEPAYMENT_CLIENT_ID')),
 				'NIMBLEPAYMENT_CLIENT_SECRET' => Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET', Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET')),
 				'NIMBLEPAYMENT_URLTPV' => Tools::getValue('NIMBLEPAYMENT_URLTPV', Configuration::get('NIMBLEPAYMENT_URLTPV')),
-				'NIMBLEPAYMENT_KEY' => Tools::getValue('NIMBLEPAYMENT_KEY', Configuration::get('NIMBLEPAYMENT_KEY')),
 				'NIMBLEPAYMENT_NAME' => Tools::getValue('NIMBLEPAYMENT_NAME', Configuration::get('NIMBLEPAYMENT_NAME')),
 				'NIMBLEPAYMENT_DESCRIPTION' => Tools::getValue('NIMBLEPAYMENT_DESCRIPTION', Configuration::get('NIMBLEPAYMENT_DESCRIPTION')),
-				/** 'NIMBLEPAYMENT_CODE' => Tools::getValue('NIMBLEPAYMENT_CODE', Configuration::get('NIMBLEPAYMENT_CODE')),*/
-
-				'NIMBLEPAYMENT_URL_OK' => Tools::getValue('NIMBLEPAYMENT_URL_OK', Configuration::get('NIMBLEPAYMENT_URL_OK')),
-				'NIMBLEPAYMENT_URL_KO' => Tools::getValue('NIMBLEPAYMENT_URL_KO', Configuration::get('NIMBLEPAYMENT_URL_KO')),
+				'NIMBLEPAYMENT_URL_OK' => $this->context->link->getModuleLink('nimblepayment', 'paymentok', array()),
+				'NIMBLEPAYMENT_URL_KO' => $this->context->link->getModuleLink('nimblepayment', 'paymentko', array())
 		);
 	}
 }
