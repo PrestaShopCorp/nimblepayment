@@ -19,5 +19,15 @@ $_MODULE['<{nimblepayment}prestashop>nimblepayment_bc9d98e48e82fc7ff71609088032e
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_85cb9cbe3c19c3e9776b89442399bbb1'] = 'Information only, not editable. This module automatically convert this URL in execution time , depending if \"Friendly URL\" is enabled or not. The language parameter is added in execution time.';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_2d8235bf66f92abefc27ee5a8bb2a268'] = 'Commerce Url KO';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
+$_MODULE['<{nimblepayment}prestashop>payment_cb3321543a77231e11c71dd7ced32438'] = 'Is not possible to contact with Nimble Payments. Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_db281ad6f391cc4d9df8aca4415caf67'] = 'Is not possible to contact with Nimble Payments. There are authentication problems. Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_7bb2a7e52220802eb8c010f63194d4ef'] = 'Is not possible send the payment to Nimble Payments. Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_044da2e19f42c0a936eebec8910fd1ff'] = 'Unknown error or timeout. Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_1b515cbfa79f140fd0d71530c12526a4'] = 'Is not possible send the payment to Nimble Payments (Code Error: \"%s). Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_bd01e957e7662d89eb7c380143f6669b'] = 'We have recieved an error from Nimble Payments (Error: %s). Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_failed_4a2828fcedc138989a6fdad5b69c7f01'] = 'The payment could not be completed, an error has occurred:';
+$_MODULE['<{nimblepayment}prestashop>payment_failed_270ca015c037064561c242fac2e8d7bb'] = 'Back';
 $_MODULE['<{nimblepayment}prestashop>infos_c4eb3a04b7b5837f24d49cf2032cd74b'] = 'This module allows you to accept payments by nimble sdk.';
 $_MODULE['<{nimblepayment}prestashop>infos_a64042f1e121bfa7a13eaf22005ebf35'] = 'If the customers chooses this method of payment, they may pay automatically.';
+$_MODULE['<{nimblepayment}prestashop>payment_c6fb6b0b3edae36c36599716922bf4d6'] = 'Pay by Nimble';
+$_MODULE['<{nimblepayment}prestashop>payment_33a2f873d6919b4591ed89a47a0e87dd'] = 'Pay by Credit card';
