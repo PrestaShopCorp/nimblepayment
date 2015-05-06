@@ -50,7 +50,7 @@ class NimblePayment extends PaymentModule
 	public function install()
 	{
 		if (! parent::install()
-				|| ! Configuration::updateValue('NIMBLEPAYMENT_URLTPV', 'https://dev.nimblepayments.com/api/')
+				|| ! Configuration::updateValue('NIMBLEPAYMENT_URLTPV', 'sandbox')
 				|| ! $this->registerHook('payment')
 				|| ! $this->registerHook('paymentReturn'))
 			return false;
@@ -172,8 +172,8 @@ class NimblePayment extends PaymentModule
 						'name' => 'Real'
 				),
 				array(
-						'id_option' => 'demo',
-						'name' => 'Demo'
+						'id_option' => 'sandbox',
+						'name' => 'Sandbox'
 				),
 		);
 		$this->fields_form[1]['form'] = array (
