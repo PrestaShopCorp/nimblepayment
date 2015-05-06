@@ -41,7 +41,7 @@ class NimblePaymentPaymentKoModuleFrontController extends ModuleFrontController
 		$code = Tools::getValue('paymentcode');
 		$cart = (int)Tools::substr($code, 0, 8);
 
-		$this->nimblepayment_client_secret = Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET', Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET'));
+		$this->nimblepayment_client_secret = Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET');
 		$cart = new Cart($cart);
 		$order_num = Tools::substr($code, 0, 8);
 		$total_url = $cart->getOrderTotal(true, Cart::BOTH) * 100;

@@ -62,9 +62,9 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 
 	public function validatePaymentData()
 	{
-		$this->nimblepayment_client_secret = Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET', Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET'));
-		$this->nimblepayment_client_id = Tools::getValue('NIMBLEPAYMENT_CLIENT_ID', Configuration::get('NIMBLEPAYMENT_CLIENT_ID'));
-		$this->nimblepayment_urltpv = Tools::getValue('NIMBLEPAYMENT_URLTPV', Configuration::get('NIMBLEPAYMENT_URLTPV'));
+		$this->nimblepayment_client_secret = Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET');
+		$this->nimblepayment_client_id = Configuration::get('NIMBLEPAYMENT_CLIENT_ID');
+		$this->nimblepayment_urltpv = Configuration::get('NIMBLEPAYMENT_URLTPV');
 
 		if ($this->nimblepayment_client_secret == '' || $this->nimblepayment_client_id == '')
 		{
