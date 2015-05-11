@@ -23,8 +23,8 @@ $_MODULE['<{nimblepayment}prestashop>payment_cb3321543a77231e11c71dd7ced32438'] 
 $_MODULE['<{nimblepayment}prestashop>payment_db281ad6f391cc4d9df8aca4415caf67'] = 'Is not possible to contact with Nimble Payments. There are authentication problems. Sorry for the inconvenience.';
 $_MODULE['<{nimblepayment}prestashop>payment_7bb2a7e52220802eb8c010f63194d4ef'] = 'Is not possible send the payment to Nimble Payments. Sorry for the inconvenience.';
 $_MODULE['<{nimblepayment}prestashop>payment_044da2e19f42c0a936eebec8910fd1ff'] = 'Unknown error or timeout. Sorry for the inconvenience.';
-$_MODULE['<{nimblepayment}prestashop>payment_1b515cbfa79f140fd0d71530c12526a4'] = 'Is not possible send the payment to Nimble Payments (Code Error: \"%s). Sorry for the inconvenience.';
-$_MODULE['<{nimblepayment}prestashop>payment_bd01e957e7662d89eb7c380143f6669b'] = 'We have recieved an error from Nimble Payments (Error: %s). Sorry for the inconvenience.';
+$_MODULE['<{nimblepayment}prestashop>payment_afc6758c7f38d4ceb34ec48a8d71fdd8'] = 'Is not possible send the payment to Nimble Payments. Sorry for the inconvenience. Code Error:';
+$_MODULE['<{nimblepayment}prestashop>payment_5f08cf5ce9443867350ac4faa07747f4'] = 'We have recieved an error from Nimble Payments. Sorry for the inconvenience. Error:';
 $_MODULE['<{nimblepayment}prestashop>payment_failed_4a2828fcedc138989a6fdad5b69c7f01'] = 'The payment could not be completed, an error has occurred:';
 $_MODULE['<{nimblepayment}prestashop>payment_failed_270ca015c037064561c242fac2e8d7bb'] = 'Back';
 $_MODULE['<{nimblepayment}prestashop>infos_c4eb3a04b7b5837f24d49cf2032cd74b'] = 'This module allows you to accept payments by nimble sdk.';

@@ -46,15 +46,20 @@ class NimblePaymentPaymentKoModuleFrontController extends ModuleFrontController
 		$order_num = Tools::substr($code, 0, 8);
 		$total_url = $cart->getOrderTotal(true, Cart::BOTH) * 100;
 		$paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total_url);
+
 		if ($paramurl == $code)
 		{
 			$total = $cart->getOrderTotal(true, Cart::BOTH);
-			$mailvars = array();
+			$extra_vars = array();
+			$extra_vars['transaction_id'] = $this->context->cookie->nimble_transaction_id; //transaction_id is in session
+			$this->context->cookie->__set('nimble_transaction_id', ''); //reset cookie
 			$nimble = new nimblepayment();
-			$nimble->validateOrder($cart->id, _PS_OS_CANCELED_, $total, $nimble->displayName, null, $mailvars, null, false, $cart->secure_key);
+			$nimble->validateOrder($cart->id, _PS_OS_CANCELED_, $total, $nimble->displayName, null, $extra_vars, null, false, $cart->secure_key);
 			$customer = new Customer($cart->id_customer);
-			Tools::redirect('index.php?controller=order-confirmation&id_cart='.$cart->id.'&id_module='.$nimble->module->id.'&id_order='.
-			$nimble->module->currentOrder.'&key='.$customer->secure_key);
+			Tools::redirect('index.php?controller=order-confirmation&id_cart='.$cart->id
+				.'&id_module='.$nimble->module->id
+				.'&id_order='.$nimble->module->currentOrder
+				.'&key='.$customer->secure_key);
 		}
 	}
 }

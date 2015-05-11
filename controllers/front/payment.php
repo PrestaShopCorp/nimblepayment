@@ -141,20 +141,25 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		elseif (!isset($response['error']))
 		{
 			if ($response['result']['code'] == 200)
+			{
+				//save transaction_id in session. After in validateOrder (paymentok.php) we will use transaction_id
+				$this->context->cookie->__set('nimble_transaction_id', $response['data']['id']);
+
 				//Tools::redirect($response['data'][0]['paymentUrl']); //old version
 				Tools::redirect($response['data']['paymentUrl']);
+			}
 			else
 			{
 				//type error = 4 // problem to send payment 2
 				$this->setTemplate('payment_failed.tpl');
-				$this->type_error =  $this->module->l('Is not possible send the payment to Nimble Payments (Code Error: "%s). Sorry for the inconvenience.', $response['result']['code']);
+				$this->type_error =  $this->module->l('Is not possible send the payment to Nimble Payments. Sorry for the inconvenience. Code Error: '). $response['result']['code'];
 				Logger::addLog('NIMBLE_PAYMENTS. Is not possible send the payment to Nimble Payments (Code Error: '.$response['result']['code'].')', 4);
 			}
 		}
 		else
 		{
 			//type error = 5 // problem to send payment 3
-			$this->type_error = $this->module->l('We have recieved an error from Nimble Payments (Error: %s). Sorry for the inconvenience.', $response['error']);
+			$this->type_error = $this->module->l('We have recieved an error from Nimble Payments. Sorry for the inconvenience. Error: '). $response['error'];
 			$this->setTemplate('payment_failed.tpl');
 			Logger::addLog('NIMBLE_PAYMENTS. We have recieved an error from Nimble Payments (Error: '.$response['error'].')', 4);
 		}

@@ -51,9 +51,11 @@ class NimblePaymentPaymentOkModuleFrontController extends ModuleFrontController
 		if ($paramurl == $code)
 		{
 			$total = $cart->getOrderTotal(true, Cart::BOTH);
-			$mailvars = array();
+			$extra_vars = array();
+			$extra_vars['transaction_id'] = $this->context->cookie->nimble_transaction_id; //transaction_id is in session
+			$this->context->cookie->__set('nimble_transaction_id', ''); //reset cookie
 			$nimble = new nimblepayment();
-			$nimble->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $nimble->displayName, null, $mailvars, null, false, $cart->secure_key);
+			$nimble->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $nimble->displayName, null, $extra_vars, null, false, $cart->secure_key);
 			$customer = new Customer($cart->id_customer);
 			Tools::redirect('index.php?controller=order-confirmation&id_cart='.$cart->id
 				.'&id_module='.$nimble->module->id
