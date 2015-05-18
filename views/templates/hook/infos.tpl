@@ -1,5 +1,5 @@
 {*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
@@ -27,6 +27,6 @@
 
 <div class="info-module-nimble">
 	<img id="img-module-nimble" src="/modules/nimblepayment/views/img/nimble.png" >
-	<p><strong>{l s='This module allows you to accept payments by nimble sdk.' mod='nimblepayment'}</strong></p>
-	<p>{l s='If the customers chooses this method of payment, they may pay automatically.' mod='nimblepayment'}</p>
+	<p><strong>{l s='This module allows you to accept payments by Nimble SDK.' mod='nimblepayment'}</strong></p>
+	<p>{l s='If the customer chooses this method of payment, they may pay automatically.' mod='nimblepayment'}</p>
 </div>

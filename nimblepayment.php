@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -42,8 +42,8 @@ class NimblePayment extends PaymentModule
 		$this->bootstrap = true;
 		parent::__construct();
 		$this->page = basename(__FILE__, '.php');
-		$this->displayName = $this->l('Nimble');
-		$this->description = $this->l('nimble payment gateway');
+		$this->displayName = $this->l('Nimble Payments');
+		$this->description = $this->l('Nimble Payments Gateway');
 		$this->confirmUninstall = $this->l('Are you sure about removing these details?');
 	}
 
@@ -79,7 +79,7 @@ class NimblePayment extends PaymentModule
 			elseif (!Tools::getValue('NIMBLEPAYMENT_CLIENT_SECRET'))
 			$this->post_errors[] = $this->l('Client secret is required.');
 			elseif (!Tools::getValue('NIMBLEPAYMENT_NAME'))
-			$this->post_errors[] = $this->l('Commerce name is required.');
+			$this->post_errors[] = $this->l('Shop name is required.');
 		}
 	}
 
@@ -178,18 +178,18 @@ class NimblePayment extends PaymentModule
 		);
 		$this->fields_form[1]['form'] = array (
 				'legend' => array(
-						'title' => $this->l('Commerce Details'),
+						'title' => $this->l('Shop Details'),
 						'icon' => 'icon-edit'
 				),
 				'input' => array(
 						array(
 								'type' => 'text',
-								'label' => $this->l('Commerce Name'),
+								'label' => $this->l('Shop Name'),
 								'name' => 'NIMBLEPAYMENT_NAME',
 						),
 						array(
 								'type' => 'textarea',
-								'label' => $this->l('Commerce Description'),
+								'label' => $this->l('Shop Description'),
 								'name' => 'NIMBLEPAYMENT_DESCRIPTION',
 						),
 
@@ -205,17 +205,19 @@ class NimblePayment extends PaymentModule
 						),
 						array(
 								'type' => 'text',
-								'label' => $this->l('Commerce Url OK'),
+								'label' => $this->l('Shop Url OK'),
 								'name' => 'NIMBLEPAYMENT_URL_OK',
-								'desc' => $this->l('Information only, not editable. This module automatically convert this URL in execution time , depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
-								'readonly' => TRUE,
+								'desc' => $this->l('Information only, not editable. This module automatically converts this URL in execution time ,
+								 depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
+								'readonly' => true,
 						),
 						array(
 								'type' => 'text',
-								'label' => $this->l('Commerce Url KO'),
+								'label' => $this->l('Shop Url KO'),
 								'name' => 'NIMBLEPAYMENT_URL_KO',
-								'desc' => $this->l('Information only, not editable. This module automatically convert this URL in execution time , depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
-								'readonly' => TRUE,
+								'desc' => $this->l('Information only, not editable. This module automatically converts this URL in execution time ,
+								 depending if "Friendly URL" is enabled or not. The language parameter is added in execution time.'),
+								'readonly' => true,
 
 						)
 				),
@@ -266,8 +268,8 @@ class NimblePayment extends PaymentModule
 				'NIMBLEPAYMENT_URLTPV' => Tools::getValue('NIMBLEPAYMENT_URLTPV', Configuration::get('NIMBLEPAYMENT_URLTPV')),
 				'NIMBLEPAYMENT_NAME' => Tools::getValue('NIMBLEPAYMENT_NAME', Configuration::get('NIMBLEPAYMENT_NAME')),
 				'NIMBLEPAYMENT_DESCRIPTION' => Tools::getValue('NIMBLEPAYMENT_DESCRIPTION', Configuration::get('NIMBLEPAYMENT_DESCRIPTION')),
-				'NIMBLEPAYMENT_URL_OK' => $this->context->link->getModuleLink('nimblepayment', 'paymentok', array()),
-				'NIMBLEPAYMENT_URL_KO' => $this->context->link->getModuleLink('nimblepayment', 'paymentko', array())
+				'NIMBLEPAYMENT_URL_OK' => Context::getContext()->link->getModuleLink('nimblepayment', 'paymentok', array()),
+				'NIMBLEPAYMENT_URL_KO' => Context::getContext()->link->getModuleLink('nimblepayment', 'paymentko', array())
 		);
 	}
 }
