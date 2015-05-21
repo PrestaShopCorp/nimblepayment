@@ -164,7 +164,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 			$this->type_error = $this->module->l('We have received an error from Nimble Payments. Sorry for the inconvenience. Error: ')
 			.$response['error'];
 			$this->setTemplate('payment_failed.tpl');
-			Logger::addLog('NIMBLE_PAYMENTS. We have recieved an error from Nimble Payments (Error: '.$response['error'].')', 4);
+			Logger::addLog('NIMBLE_PAYMENTS. We have received an error from Nimble Payments (Error: '.$response['error'].')', 4);
 		}
 	}
 }
