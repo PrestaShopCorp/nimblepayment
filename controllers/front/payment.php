@@ -112,7 +112,7 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 		$cart = $this->context->cart;
 
 		$payment = array(
-			'amount' => (int)$total,
+			'amount' => $total,
 			'currency' => 'EUR',
 			'customerData' => $cart->id,
 			'paymentSuccessUrl' => $this->context->link->getModuleLink('nimblepayment', 'paymentok', array('paymentcode' => $paramurl)),
@@ -148,6 +148,15 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 
 				//Tools::redirect($response['data'][0]['paymentUrl']); //old version
 				Tools::redirect($response['data']['paymentUrl']);
+			}
+			elseif($response['result']['code'] == 401)
+			{
+				//type error = 7 // 401 unauthorized
+				$this->setTemplate('payment_failed.tpl');
+				$this->type_error = $this->module->l('Unauthorized access. Please an administrator user should check the credentials 
+					and the selected environment to access Nimble Payments. Sorry for the inconvenience.');
+				Logger::addLog('NIMBLE_PAYMENTS. Unauthorized access. Please an administrator user should check the credentials 
+					and the selected environment to access Nimble Payments. (Code Error: '.$response['result']['code'].')', 4);
 			}
 			else
 			{
