@@ -33,11 +33,11 @@
     <div class="col-lg-4 col-md-6 col-xs-12 text-box">
         <div class="padding">
             <h1 class="title">Nimble Payments</h1>
-            <p class="text"><strong>{l s='Podrás aceptar los principales métodos de pago' mod='nimblepayment'}</strong>: {l s='tarjetas de crédito, débito, prepago o virtual' mod='nimblepayment'}.</p>
-            <p class="text">{l s='Tendrás a tu disposición un servicio de' mod='nimblepayment'} <strong>{l s='atención cualificado y en español' mod='nimblepayment'}</strong>; {l s='y un panel de control personal donde podrás consultar estadísticas sobre tu negocio' mod='nimblepayment'}.</p>
-            <p class="text"><strong>{l s='Con un sistema de precios claro' mod='nimblepayment'}</strong>: {l s='un porcentaje fijo por transacción que disminuye a medida que aumenta tu volumen de ventas' mod='nimblepayment'}.</p>
+            <p class="text"><strong>{l s='You can easy accept the main payment methods' mod='nimblepayment'}</strong>: {l s='credit, debit, prepaid or virtual cards' mod='nimblepayment'}.</p>
+            <p class="text">{l s='You will have a' mod='nimblepayment'} <strong>{l s='qualified customer service in spanish' mod='nimblepayment'}</strong>; {l s='and a personal control panel where you will be able to check statistics about your business' mod='nimblepayment'}.</p>
+            <p class="text"><strong>{l s='With a very clear pricing system' mod='nimblepayment'}</strong>: {l s='a fixed percentage per transaction that will be reduced as your turnover increases' mod='nimblepayment'}.</p>
             <p class="btn">
-                <a href="https://nimblepayments.com/" target="_blank" class="link">{l s='¡Pruébalo ya!' mod='nimblepayment'}</a>
+                <a href="https://nimblepayments.com/" target="_blank" class="link">{l s='Try now!' mod='nimblepayment'}</a>
             </p>
         </div>
     </div>
