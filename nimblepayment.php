@@ -123,7 +123,7 @@ class NimblePayment extends PaymentModule
 		}
 
 		$output .= $this->displaynimblepayment();
-		$output .= $this->renderForm();
+		$output .= '<div id="nimble-form">'.$this->renderForm().'</div>';
 		return $output;
 	}
 

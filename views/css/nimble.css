@@ -1,25 +1,190 @@
-.payment_module .nimblepayment img{
-	float: left;
-	height: 37px;
-	margin: -7px 18px 17px 2px;
+.nimbleHeader{
+  margin: 5px 10px 10px 10px !important;
 }
 
-#module-nimblepayment-payment #left_column {
-	display: none;
+.nimbleHeader .text-box {
+  background: #EEEFEC;
+  border-radius: 4px;
+  font-family: arial;
 }
 
-.info-module-nimble{
-	padding: 20px;
-	border: solid 1px #75b62a;
-	margin-bottom: 20px;
+.nimbleHeader .img-box{
+  margin-bottom: 10px;
 }
 
-.info-module-nimble p{
-	color:#75b62a;
+.nimbleHeader .text-box .padding {
+  padding: 20px;
 }
 
-#img-module-nimble{
-	float:left; 
-	margin-right:15px;
-	margin-top: -5px;
+.nimbleHeader .text-box .title {
+  color: #29BC1F;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  font-family: arial;
+}
+
+.nimbleHeader .text-box .text {
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  color: black;
+}
+
+.nimbleHeader .text-box .btn {
+  display: block;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.nimbleHeader .iblock, .nimbleHeader .btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nimbleHeader .btn {
+  padding: 0;
+  overflow: hidden;
+}
+
+.nimbleHeader .text-box .btn {
+  display: block;
+  margin-top: 10px
+  text-align: center;
+}
+
+.nimbleHeader .text-box .btn .link {
+  border-radius: 35px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  margin: 0 auto;
+  width: 175px;
+}
+
+.nimbleHeader .btn .link {
+  color: #fff;
+  display: block;
+  font-size: 1.2rem;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background-color .5s ease;
+  transition: background-color .5s ease;
+  background-color: #65be00;
+  border: 1px solid #65be00;
+  border-radius: 4px;
+  height: auto;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  width: auto;
+}
+
+#content.bootstrap  #nimble-form .panel {
+  border: 1px solid #EEEFEC;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: none;
+}
+
+#content.bootstrap  #nimble-form .panel-heading {
+  border-left: 8px solid #65be00;
+  border-bottom: none;
+  margin-bottom: 0;
+  display: block;
+  font-size: 18px;
+  line-height: 3px;
+  padding: 30px 0px 30px 20px;
+  text-transform: uppercase;
+  font-family: arial !important;
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+#content.bootstrap  #nimble-form .panel-heading i{
+  display: none;
+}
+
+#content.bootstrap  #nimble-form .form-group{
+  width: 100%;
+}
+
+#content.bootstrap  #nimble-form .form-horizontal .control-label{
+  text-align: left;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: arial !important;
+  color: #383839;
+  margin-bottom: 8px;
+  font-weight: bolder;
+}
+
+#content.bootstrap  #nimble-form .form-horizontal input{
+  color: #818287;
+  display: block;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 10px 10px;
+  background-color: #fdfdfd;
+  border: 1px solid #b5b5b5;
+  height: 50px;
+}
+
+#content.bootstrap  #nimble-form {
+
+}
+
+#content.bootstrap  #nimble-form select {
+
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  width: 50% !important;
+  background: url(../img/deplegable.png) no-repeat 98% center, -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e5e5e5));
+  background: url(../img/deplegable.png) no-repeat 98% center, -webkit-linear-gradient(#f4f4f4, #e5e5e5);
+  background: url(../img/deplegable.png) no-repeat 98% center,linear-gradient(#f4f4f4, #e5e5e5);
+  color: #515155;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 12px 12px;
+
+  border: 1px solid #b5b5b5;
+  border-radius: 4px;
+  display: block;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+#content.bootstrap  #nimble-form .panel-footer{
+  border: none;
+  background-color: transparent;
+}
+
+#content.bootstrap  #nimble-form [class^="process-icon-"]{
+  display: none;
+}
+
+#content.bootstrap  #nimble-form #module_form_submit_btn {
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  padding: 16px 25px;
+  line-height: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background-color .5s ease;
+  transition: background-color .5s ease;
+  background-color: #65be00;
+  border: 1px solid #65be00;
+  border-radius: 4px;
+  height: auto;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  width: auto;
+  box-shadow: none;
 }
