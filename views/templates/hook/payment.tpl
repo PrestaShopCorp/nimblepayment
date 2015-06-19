@@ -31,8 +31,9 @@
             class="nimblepayment bankwire" 
             href="{$link->getModuleLink('nimblepayment', 'payment')|escape:'html':'UTF-8'}" 
             title="{l s='Pay by Nimble Payments' mod='nimblepayment'}">
-			<img src="{$module_dir|escape}views/img/nimble.png" alt="{l s='Pay by Nimble Payments' mod='nimblepayment'}"/>
-            	{l s='Pay by Credit card' mod='nimblepayment'} 
+                {l s='Pay by Credit card' mod='nimblepayment'} 
+                
+                <img src="{$module_dir|escape}views/img/img-boton.png" alt="{l s='Pay by Nimble Payments' mod='nimblepayment'}"/>
             </a>
         </p>
     </div>
