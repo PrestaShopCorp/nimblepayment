@@ -13,6 +13,7 @@ $_MODULE['<{nimblepayment}prestashop>nimblepayment_c888438d14855d7d96a2724ee9c30
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_d85c4d6fd5b26c919beca062b24369a5'] = 'Detalles de cliente';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_eae4c6c8dce6a00ff9af3ac60e98e0d6'] = 'Client Id';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_1b4739e491387ef5d8a546854308e5fe'] = 'Client Secret';
+$_MODULE['<{nimblepayment}prestashop>nimblepayment_fa6a5a3224d7da66d9e0bdec25f62cf0'] = 'Pruebas';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_85be062733f9b37a337b0517f9d18696'] = 'Detalles tienda';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_9127fe218b2cac7f0c8aecd7016a891d'] = 'Nombre tienda';
 $_MODULE['<{nimblepayment}prestashop>nimblepayment_5d605634919b04d3954d61654cb1ea64'] = 'Descripción tienda';

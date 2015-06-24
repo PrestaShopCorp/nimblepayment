@@ -180,7 +180,7 @@ class NimblePayment extends PaymentModule
 				),
 				array(
 						'id_option' => 'sandbox',
-						'name' => 'Pruebas'
+						'name' => $this->l('Testing')
 				),
 		);
 		$this->fields_form[1]['form'] = array (
