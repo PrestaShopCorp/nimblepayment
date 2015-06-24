@@ -36,7 +36,7 @@ class NimblePayment extends PaymentModule
 	{
 		$this->name = 'nimblepayment';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.3';
+		$this->version = '1.0.4';
 		$this->author = 'BBVA';
 
 		$this->bootstrap = true;
@@ -180,7 +180,7 @@ class NimblePayment extends PaymentModule
 				),
 				array(
 						'id_option' => 'sandbox',
-						'name' => 'Sandbox'
+						'name' => $this->l('Testing')
 				),
 		);
 		$this->fields_form[1]['form'] = array (
