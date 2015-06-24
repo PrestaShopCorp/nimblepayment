@@ -188,3 +188,32 @@
   width: auto;
   box-shadow: none;
 }
+
+
+.paiement_block .nimblepayment img{
+  float: right;
+  width: 330px;
+  height: 35px;
+
+}
+
+
+
+
+@media screen and (max-width: 500px) {
+  .paiement_block .nimblepayment img{
+    width: 230px;
+    height: 25px;
+  }
+}
+@media screen and (max-width: 390px) {
+  .paiement_block .nimblepayment img{
+    width: 165px;
+    height: 18px;
+  }
+}
+
+
+
+
+
