@@ -25,6 +25,7 @@
 */
 
 require_once dirname(__FILE__).'/../../library/sdk/lib/Nimble/base/NimbleAPI.php';
+require_once dirname(__FILE__).'/../../library/sdk/lib/Nimble/base/Config.php';
 use Nimble\Base\NimbleAPI;
 
 class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
