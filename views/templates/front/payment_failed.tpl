@@ -23,10 +23,10 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<link href="{$this_path|escape}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
+<link href="{$this_path|escape:'htmlall':'UTF-8'}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
 {capture name=path}{l s='Nimble Payments' mod='nimblepayment'}{/capture}
 
-<p><strong>{l s='The payment could not be completed, an error has occurred:' mod='nimblepayment'}</strong> {$error|escape}</p>
+<p><strong>{l s='The payment could not be completed, an error has occurred:' mod='nimblepayment'}</strong> {$error|escape:'htmlall':'UTF-8'}</p>
 
 <p>
 	<a href="javascript:history.back()" title="{l s='Back' mod='nimblepayment'}" class="button-exclusive btn btn-default">

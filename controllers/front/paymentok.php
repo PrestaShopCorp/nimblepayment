@@ -24,43 +24,55 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-/** error_reporting(E_ALL);
-* ini_set('display_errors', 1);
-*/
+/**
+ * error_reporting(E_ALL);
+ * ini_set('display_errors', 1);
+ */
 
-include(dirname(__FILE__).'/nimblepayment.php');
+require dirname(__FILE__).'/nimblepayment.php';
 class NimblePaymentPaymentOkModuleFrontController extends ModuleFrontController
 {
-	public $nimblepayment_client_secret = '';
-	/**
-	 * @see FrontController::initContent()
-	 */
+    public $nimblepayment_client_secret = '';
+    /**
+     * @see FrontController::initContent()
+     */
 
-	public function initContent()
-	{
-		parent::initContent();
-		$code = Tools::getValue('paymentcode');
-		$cart = (int)Tools::substr($code, 0, 8);
+    public function initContent()
+    {
+        parent::initContent();
+        $code = Tools::getValue('paymentcode');
+        $cart = (int)Tools::substr($code, 0, 8);
 
-		$this->nimblepayment_client_secret = Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET');
-		$cart = new Cart($cart);
-		$order_num = Tools::substr($code, 0, 8);
-		$total_url = $cart->getOrderTotal(true, Cart::BOTH) * 100;
-		$paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total_url);
+        $this->nimblepayment_client_secret = Configuration::get('NIMBLEPAYMENT_CLIENT_SECRET');
+        $cart = new Cart($cart);
+        $order_num = Tools::substr($code, 0, 8);
+        $total_url = $cart->getOrderTotal(true, Cart::BOTH) * 100;
+        $paramurl = $order_num.md5($order_num.$this->nimblepayment_client_secret.$total_url);
 
-		if ($paramurl == $code)
-		{
-			$total = $cart->getOrderTotal(true, Cart::BOTH);
-			$extra_vars = array();
-			$extra_vars['transaction_id'] = $this->context->cookie->nimble_transaction_id; //transaction_id is in session
-			$this->context->cookie->__set('nimble_transaction_id', ''); //reset cookie
-			$nimble = new nimblepayment();
-			$nimble->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $nimble->displayName, null, $extra_vars, null, false, $cart->secure_key);
-			$customer = new Customer($cart->id_customer);
-			Tools::redirect('index.php?controller=order-confirmation&id_cart='.$cart->id
-				.'&id_module='.$nimble->module->id
-				.'&id_order='.$nimble->module->currentOrder
-				.'&key='.$customer->secure_key);
-		}
-	}
+        if ($paramurl == $code) {
+            $total = $cart->getOrderTotal(true, Cart::BOTH);
+            $extra_vars = array();
+            $extra_vars['transaction_id'] = $this->context->cookie->nimble_transaction_id; //transaction_id in session
+            $this->context->cookie->__set('nimble_transaction_id', ''); //reset cookie
+            $nimble = new nimblepayment();
+            $nimble->validateOrder(
+                $cart->id,
+                _PS_OS_PAYMENT_,
+                $total,
+                $nimble->displayName,
+                null,
+                $extra_vars,
+                null,
+                false,
+                $cart->secure_key
+            );
+            $customer = new Customer($cart->id_customer);
+            Tools::redirect(
+                'index.php?controller=order-confirmation&id_cart='.$cart->id
+                .'&id_module='.$nimble->module->id
+                .'&id_order='.$nimble->module->currentOrder
+                .'&key='.$customer->secure_key
+            );
+        }
+    }
 }
