@@ -50,9 +50,9 @@ class NimblePayment extends PaymentModule
 
     public function install()
     {
-        //only support for PHP >= 5.3 because Nimble SDK is using namespaces
-        if (! version_compare(phpversion(), '5.3', '>=')) {
-            $this->context->controller->errors[] = $this->l('Nimble Payments module only supports PHP versions greater or equal than 5.3');
+        // PHP 5.2
+        if (! version_compare(phpversion(), '5.2', '>=')) {
+            $this->context->controller->errors[] = $this->l('Nimble Payments module only supports PHP versions greater or equal than 5.2');
             return false;
         }
 

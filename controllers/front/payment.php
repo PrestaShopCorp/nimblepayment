@@ -26,7 +26,7 @@
 
 require_once dirname(__FILE__).'/../../library/sdk/lib/Nimble/base/NimbleAPI.php';
 require_once dirname(__FILE__).'/../../library/sdk/lib/Nimble/base/Config.php';
-use Nimble\Base\NimbleAPI;
+require_once dirname(__FILE__).'/../../library/sdk/lib/Nimble/api/Payments.php';
 
 class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
 {
@@ -122,7 +122,8 @@ class NimblePaymentPaymentModuleFrontController extends ModuleFrontController
         );
 
         try {
-            $response = Nimble\Api\Payments::SendPaymentClient($this->nimbleapi, $payment);
+            $p = new Payments();
+            $response = $p->SendPaymentClient($this->nimbleapi, $payment);
         } catch (Exception $e) {
         //type error = 3 // problem to send payment
             $this->type_error = $this->module->l('Is not possible to send the payment to Nimble Payments. Sorry for the inconvenience.');

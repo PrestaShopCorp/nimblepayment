@@ -42,7 +42,7 @@
             <p class="text">{l s='You will have a' mod='nimblepayment'} <strong>{l s='qualified customer service in spanish' mod='nimblepayment'}</strong>; {l s='and a personal control panel where you will be able to check statistics about your business' mod='nimblepayment'}.</p>
             <p class="text"><strong>{l s='With a very clear pricing system' mod='nimblepayment'}</strong>: {l s='a fixed percentage per transaction that will be reduced as your turnover increases' mod='nimblepayment'}.</p>
             <p class="btn">
-                <a href="https://www.nimblepayments.com/private/registration?utm_source=Prestashop_BackOffice&utm_medium=Referral%20Partners&utm_campaign=Creacion-Cuenta&partner=PRESTASHOP" target="_blank" class="link">{l s='Try now!' mod='nimblepayment'}</a>
+                <a href="https://www.nimblepayments.com/private/registration?utm_source=Prestashop_BackOffice&utm_medium=Referral%20Partners&utm_campaign=Creacion-Cuenta&partner=prestashop" target="_blank" class="link">{l s='Try now!' mod='nimblepayment'}</a>
             </p>
         </div>
     </div>
