@@ -36,7 +36,7 @@ class NimblePayment extends PaymentModule
 	{
 		$this->name = 'nimblepayment';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.5';
+		$this->version = '1.0.6';
 		$this->author = 'BBVA';
 
 		$this->bootstrap = true;
