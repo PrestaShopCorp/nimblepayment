@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<link href="{$module_dir|escape}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
+<link href="{$module_dir|escape:'htmlall':'UTF-8'}views/css/nimble.css" rel="stylesheet" type="text/css" media="all">
 <div class="row">
 	<div class="col-xs-12 col-md-6">
         <p class="payment_module">
@@ -33,7 +33,7 @@
             title="{l s='Pay by Nimble Payments' mod='nimblepayment'}">
                 {l s='Pay by Credit card' mod='nimblepayment'} 
                 
-                <img src="{$module_dir|escape}views/img/img-boton.png" alt="{l s='Pay by Nimble Payments' mod='nimblepayment'}"/>
+                <img src="{$module_dir|escape:'htmlall':'UTF-8'}views/img/img-boton.png" alt="{l s='Pay by Nimble Payments' mod='nimblepayment'}"/>
             </a>
         </p>
     </div>
