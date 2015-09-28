@@ -49,17 +49,19 @@
 
 .nimbleHeader .text-box .btn {
   display: block;
-  margin-top: 10px
+  margin-top: 25px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .nimbleHeader .text-box .btn .link {
   border-radius: 35px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: -1px;
   margin: 0 auto;
   width: 175px;
+  padding: 12px;
 }
 
 .nimbleHeader .btn .link {
